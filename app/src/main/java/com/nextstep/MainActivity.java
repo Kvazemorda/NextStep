@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapterPerson);
     }
 
+    /**
+     * Get object from service
+     */
     public class HttpRequestPerson extends AsyncTask<Void, Void, PersonEntity> {
         @Override
         protected PersonEntity doInBackground(Void... params) {
