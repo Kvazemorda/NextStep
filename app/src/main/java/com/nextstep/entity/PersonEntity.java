@@ -3,14 +3,13 @@ package com.nextstep.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class PersonEntity {
-
     private int id;
     private String name;
     private String email;
     private Set<TargetEntity> targets = new HashSet<>();
     private Set<FamilyEntity> familyEntitySet = new HashSet<>();
+    private Set<BalanceEntity> balanceEntities = new HashSet<>();
 
     public PersonEntity() {
     }
@@ -77,6 +76,14 @@ public class PersonEntity {
     }
     public void setFamilyEntitySet(Set<FamilyEntity> familyEntitySet) {
         this.familyEntitySet = familyEntitySet;
+    }
+
+    public Set<BalanceEntity> getBalanceEntities() {
+        return balanceEntities;
+    }
+
+    public void setBalanceEntities(Set<BalanceEntity> balanceEntities) {
+        this.balanceEntities = balanceEntities;
     }
 
     @Override

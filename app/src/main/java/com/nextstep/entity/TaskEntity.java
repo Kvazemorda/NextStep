@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TaskEntity {
+public class TaskEntity implements Comparable{
 
     private long id;
     private String title;
@@ -17,6 +17,7 @@ public class TaskEntity {
     private BigDecimal planCashFlow;
     private Set<CashFlowEntity> cashFlowsById = new HashSet<>();
     private Set<TaskEntity> taskChild = new HashSet<>();
+    private long repeatTask;
 
     public TaskEntity() {
     }
@@ -42,6 +43,11 @@ public class TaskEntity {
     public TaskEntity(String title, TargetEntity targetByTarget, BigDecimal planCashFlow) {
         this.title = title;
         this.targetByTarget = targetByTarget;
+        this.planCashFlow = planCashFlow;
+    }
+
+    public TaskEntity(String title,  BigDecimal planCashFlow) {
+        this.title = title;
         this.planCashFlow = planCashFlow;
     }
 
@@ -99,6 +105,14 @@ public class TaskEntity {
         this.planCashFlow = planCashFlow;
     }
 
+    public long getRepeatTask() {
+        return repeatTask;
+    }
+
+    public void setRepeatTask(long repeatTask) {
+        this.repeatTask = repeatTask;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -153,6 +167,14 @@ public class TaskEntity {
         return "title='" + title + '\'' +
                 ", dateStart=" + dateStart +
                 ", cashFlowsById=" + cashFlowsById;
+    }
 
+    @Override
+    public int compareTo(Object o) {
+        TaskEntity taskEntity = (TaskEntity) o;
+        if(this.getTaskChild().contains(taskEntity)){
+            return 1;
+        }else
+        return -1;
     }
 }

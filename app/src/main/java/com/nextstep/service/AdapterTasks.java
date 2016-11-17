@@ -8,31 +8,30 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.nextstep.R;
-import com.nextstep.Task;
-import com.nextstep.entity.PersonEntity;
+import com.nextstep.entity.TaskEntity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
-public class AdapterPerson extends BaseAdapter {
+public class AdapterTasks extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
-    ArrayList<PersonEntity> persons;
+    List<TaskEntity> tasks;
 
-    public AdapterPerson(Context ctx, ArrayList<PersonEntity> persons) {
+    public AdapterTasks(Context ctx, List<TaskEntity> tasks) {
         this.ctx = ctx;
-        this.persons = persons;
+        this.tasks = tasks;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return persons.size();
+        return tasks.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return persons.get(position);
+        return tasks.get(position);
     }
 
     @Override
@@ -46,11 +45,11 @@ public class AdapterPerson extends BaseAdapter {
         if(view == null){
             view = lInflater.inflate(R.layout.task, parent, false);
         }
-        PersonEntity personEntity = persons.get(position);
+        TaskEntity task = tasks.get(position);
 
-        ((TextView)view.findViewById(R.id.taskText)).setText(personEntity.getName());
-        ((TextView)view.findViewById(R.id.descTaskText)).setText(personEntity.getEmail());
-        ((TextView)view.findViewById(R.id.costTask)).setText(String.valueOf(personEntity.getId()));
+        ((TextView)view.findViewById(R.id.taskText)).setText(task.getTitle());
+        ((TextView)view.findViewById(R.id.descTaskText)).setText(task.getDescription());
+        ((TextView)view.findViewById(R.id.costTask)).setText(String.valueOf(task.getPlanCashFlow()));
 
         return view;
     }
