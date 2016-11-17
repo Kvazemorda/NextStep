@@ -14,6 +14,12 @@ public class PersonEntity {
     public PersonEntity() {
     }
 
+    public PersonEntity(int id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
     public PersonEntity(String name, String email) {
         this.name = name;
         this.email = email;

@@ -13,6 +13,7 @@ import com.nextstep.service.AdapterTasks;
 
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -24,6 +25,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     protected List<TaskEntity> taskEntityList = new ArrayList<>();
+    PersonEntity ilya = new PersonEntity(1, "Valya", "ilyavanavara@mail.com");
     protected String login = "Valya";
     private Date currentDate;
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
             URI url = UriComponentsBuilder.fromUriString(Constans.HOST)
                     .path(Constans.LIST_TASKS)
+                    .queryParam("personEntity", ilya)
                     .build()
                     .toUri();
             System.out.println(url.toString());
