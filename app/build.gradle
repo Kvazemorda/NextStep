@@ -37,5 +37,12 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.4.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.4.Final'
+    compile group: 'org.hibernate', name: 'hibernate-envers', version: '5.2.4.Final'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final-redhat-1'
+    compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1212.jre7'
+
+
     testCompile 'junit:junit:4.12'
 }
