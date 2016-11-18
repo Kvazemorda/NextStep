@@ -1,8 +1,6 @@
 package com.nextstep.activity;
 
-/**
- * Created by admin on 18.11.2016.
- */
+import android.app.Activity;
 
-public class NewTaskActivity {
+public class NewTaskActivity extends Activity {
 }
