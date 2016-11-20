@@ -1,11 +1,18 @@
 package com.nextstep.entity;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@DatabaseTable(tableName = "person")
 public class PersonEntity {
+    @DatabaseField(generatedId = true)
     private long id;
+    @DatabaseField (index = true)
     private String name;
+    @DatabaseField
     private String email;
     private Set<TargetEntity> targets = new HashSet<>();
     private Set<FamilyEntity> familyEntitySet = new HashSet<>();

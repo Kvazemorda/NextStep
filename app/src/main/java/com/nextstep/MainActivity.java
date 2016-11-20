@@ -1,12 +1,19 @@
 package com.nextstep;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.nextstep.activity.NewTaskActivity;
 import com.nextstep.constant.Constans;
+import com.nextstep.data.ContractData;
 import com.nextstep.entity.BalanceEntity;
 import com.nextstep.entity.PersonEntity;
 import com.nextstep.entity.TaskEntity;
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ContractData contractData = new ContractData();
         new HttpRequestTasks().execute();
         new HttpRequestBalance().execute();
     }
@@ -102,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(BalanceEntity balanceEntity) {
             fillCFTextView(String.valueOf(balanceEntity.getBalance()));
         }
+    }
+
+
+    public void onClick(View view){
+        Intent intent = new Intent(MainActivity.this, NewTaskActivity.class);
+        startActivity(intent);
     }
 
     protected long getCurrentDate(){
