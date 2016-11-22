@@ -1,15 +1,19 @@
 package com.nextstep.entity;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.HashSet;
 import java.util.Set;
 
-
+@DatabaseTable(tableName = "target")
 public class TargetEntity {
-    private int id;
-    private String title;
-    private PersonEntity person;
-    private Set<TaskEntity> tasksById = new HashSet<>();
-    private boolean finishTarget;
+    @DatabaseField(generatedId = true) private int id;
+    @DatabaseField private String title;
+    @DatabaseField(foreign = true,foreignAutoRefresh = true) private PersonEntity person;
+    @ForeignCollectionField(eager = true) private Set<TaskEntity> tasksById = new HashSet<>();
+    @DatabaseField private boolean finishTarget;
 
     public TargetEntity() {
     }

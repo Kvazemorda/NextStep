@@ -1,23 +1,26 @@
 package com.nextstep.entity;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
+@DatabaseTable(tableName = "task")
 public class TaskEntity implements Comparable{
-
-    private long id;
-    private String title;
-    private String description;
-    private int potato;
-    private Date dateStart;
-    private Date dateEnd;
-    private TargetEntity targetByTarget;
-    private BigDecimal planCashFlow;
-    private Set<CashFlowEntity> cashFlowsById = new HashSet<>();
-    private Set<TaskEntity> taskChild = new HashSet<>();
-    private long repeatTask;
+    @DatabaseField(generatedId = true) private long id;
+    @DatabaseField private String title;
+    @DatabaseField private String description;
+    @DatabaseField private int potato;
+    @DatabaseField private Date dateStart;
+    @DatabaseField private Date dateEnd;
+    @DatabaseField(foreign = true) private TargetEntity targetByTarget;
+    @DatabaseField private BigDecimal planCashFlow;
+    @ForeignCollectionField(eager = true) private Set<CashFlowEntity> cashFlowsById = new HashSet<>();
+    @ForeignCollectionField(eager = true) private Set<TaskEntity> taskChild = new HashSet<>();
+    @DatabaseField private long repeatTask;
 
     public TaskEntity() {
     }

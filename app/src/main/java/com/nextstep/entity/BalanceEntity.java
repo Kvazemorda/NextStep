@@ -1,14 +1,18 @@
 package com.nextstep.entity;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@DatabaseTable(tableName = "balance")
 public class BalanceEntity {
 
-    long id;
-    BigDecimal balance;
-    Date dateBalance;
-    PersonEntity personEntity;
+    @DatabaseField(generatedId = true) long id;
+    @DatabaseField BigDecimal balance;
+    @DatabaseField Date dateBalance;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true) PersonEntity personEntity;
 
     public BalanceEntity() {
     }

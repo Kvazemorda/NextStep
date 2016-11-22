@@ -3,28 +3,23 @@ package com.nextstep;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.nextstep.activity.NewTaskActivity;
 import com.nextstep.constant.Constans;
-import com.nextstep.data.ContractData;
+import com.nextstep.data.HelperFactory;
 import com.nextstep.entity.BalanceEntity;
 import com.nextstep.entity.PersonEntity;
 import com.nextstep.entity.TaskEntity;
 import com.nextstep.service.AdapterTasks;
-
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -32,7 +27,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     protected List<TaskEntity> taskEntityList = new ArrayList<>();
-    PersonEntity personEntity = new PersonEntity(1, "Valya", "ilyavanavara@mail.com");
+    PersonEntity personEntity;
     protected Long id = 1l;
     private Long currentDate;
 
@@ -40,9 +35,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ContractData contractData = new ContractData();
+        createPerson();
         new HttpRequestTasks().execute();
         new HttpRequestBalance().execute();
+    }
+
+    public void createPerson(){
+        try {
+            System.out.println(HelperFactory.getHelper().getPersonDAO().getAllPerson());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void fillListView(){

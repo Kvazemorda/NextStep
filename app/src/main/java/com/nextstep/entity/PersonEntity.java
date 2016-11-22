@@ -1,6 +1,7 @@
 package com.nextstep.entity;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.HashSet;
@@ -8,20 +9,17 @@ import java.util.Set;
 
 @DatabaseTable(tableName = "person")
 public class PersonEntity {
-    @DatabaseField(generatedId = true)
-    private long id;
-    @DatabaseField (index = true)
-    private String name;
-    @DatabaseField
-    private String email;
-    private Set<TargetEntity> targets = new HashSet<>();
-    private Set<FamilyEntity> familyEntitySet = new HashSet<>();
-    private Set<BalanceEntity> balanceEntities = new HashSet<>();
+    @DatabaseField(generatedId = true) private long id;
+    @DatabaseField (index = true) private String name;
+    @DatabaseField private String email;
+    @ForeignCollectionField(eager = true) private Set<TargetEntity> targets = new HashSet<>();
+    @ForeignCollectionField(eager = true) private Set<FamilyEntity> familyEntitySet = new HashSet<>();
+    @ForeignCollectionField(eager = true) private Set<BalanceEntity> balanceEntities = new HashSet<>();
 
     public PersonEntity() {
     }
 
-    public PersonEntity(int id, String name, String email) {
+    public PersonEntity(long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;

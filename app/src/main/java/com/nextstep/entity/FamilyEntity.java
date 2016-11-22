@@ -1,13 +1,16 @@
 package com.nextstep.entity;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.HashSet;
 import java.util.Set;
-
+@DatabaseTable(tableName = "family")
 public class FamilyEntity {
-
-    private long id;
-    private String nameFamily;
-    private Set<PersonEntity> personEntitySet = new HashSet<>();
+    @DatabaseField(generatedId = true) private long id;
+    @DatabaseField private String nameFamily;
+    @ForeignCollectionField(eager = true) private Set<PersonEntity> personEntitySet = new HashSet<>();
 
     public FamilyEntity() {
     }

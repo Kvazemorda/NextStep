@@ -1,13 +1,16 @@
 package com.nextstep.entity;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.math.BigDecimal;
 
+@DatabaseTable(tableName = "cashflow")
 public class CashFlowEntity {
-    private long id;
-    private BigDecimal balance;
-    private String title;
-    private int task;
-    private TaskEntity taskByTask;
+    @DatabaseField(generatedId = true) private long id;
+    @DatabaseField private BigDecimal balance;
+    @DatabaseField private String title;
+    @DatabaseField private int task;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true) private TaskEntity taskByTask;
 
     public CashFlowEntity() {
     }
